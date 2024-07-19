@@ -1,0 +1,108 @@
+{% load static %}
+<html>
+<head>
+<title>Faculty Management System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function validate(formObj)
+	{
+	if(formObj.t1.value.length==0)
+	{
+	alert("Please Enter Subject name");
+	formObj.t1.focus();
+	return false;
+	}
+	if(formObj.t2.value.length==0)
+	{
+	alert("Please Enter course name");
+	formObj.t2.focus();
+	return false;
+	}
+	if(formObj.t4.value.length==0)
+	{
+	alert("Please Enter lecture room no");
+	formObj.t4.focus();
+	return false;
+	}
+	
+	if(formObj.t5.value.length==0)
+	{
+	alert("Please Enter covering topics");
+	formObj.t5.focus();
+	return false;
+	}
+	if(formObj.t6.value.length==0)
+	{
+	alert("Please choose lecture date time");
+	formObj.t6.focus();
+	return false;
+	}
+	return true;
+	}
+	</script>
+	<script language="javascript" type="text/javascript" src="{% static 'datetimepicker.js' %}">
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Faculty Management System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+            <ul>      
+     <li><a href="{% url 'SubjectsSchedules' %}"><font size="3" color="black">Manage Teaching Subjects &Schedules</a></li>
+	 <li><a href="{% url 'ManagePublications' %}"><font size="3" color="black">Manage Publications</a></li>
+	 <li><a href="{% url 'UploadMarks' %}"><font size="3" color="black">Add Marksheets</a></li>
+	  <li><a href="{% url 'Engagement' %}"><font size="3" color="black">Engagements</a></li>
+	 <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>          
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="915" height="286" alt="" /></div>
+      				<center>
+<form name="f1" method="post" action={% url 'SubjectsSchedulesAction' %} onsubmit="return validate(this);">
+{% csrf_token %}<br/>
+   <h2><b>Teaching Subjects Schedules Screen</b></h2>
+   
+	<font size="" color="red"><center>{{ data }}</center></font>
+						
+						<table align="center" width="30%" >
+			 <tr><td><font size='3' color="black"><b>Subject&nbsp;Name</b></td>
+			 <td><input type="text" name="t1" style="font-family: Comic Sans MS" size="50"></td></tr>
+
+			 <tr><td><font size='3' color="black"><b>Course&nbsp;Name</b></td>
+			 <td><input type="text" name="t2" style="font-family: Comic Sans MS" size="30"></td></tr>
+
+			 <tr><td><font size='' color="black"><b>Year</b></td><td><Select name="t3">
+		  <option value="First Year">First Year</option>
+		  <option value="Second Year">Second Year</option>
+		  <option value="Third Year">Third Year</option>
+		  <option value="Fourth Year">Fourth Year</option>
+		  </td></td></tr>
+
+		   <tr><td><font size='3' color="black"><b>Lecture&nbsp;Room&nbsp;No</b></td>
+			 <td><input type="text" name="t4" style="font-family: Comic Sans MS" size="15"></td></tr>
+
+			 <tr><td><font size='3' color="black"><b>Covering&nbsp;Topic&nbsp;Description</b></td>
+			 <td><input type="text" name="t5" style="font-family: Comic Sans MS" size="30"></td></tr>
+
+			<tr><Td><font size="3" color="black"><b>Lecturer&nbsp;Datetime</td><td>
+<input name="t6" type="Text" id="demo1" maxlength="25" size="20" class="c2" ><a href="javascript:NewCal('demo1','ddmmyyyy',true,24)"><img src="{% static 'cal.gif' %}" width="16" height="16" border="0" alt="Pick a date"></a>
+	  		<span class="descriptions"></span>
+</td></tr>	
+         
+		  
+			<tr><td></td><td><input type="submit" value="Submit"></td>
+			</table>
+				</div>	
+					
+				</div>
+				
+					
+	</body>
+</html>

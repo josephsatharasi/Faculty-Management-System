@@ -1,0 +1,150 @@
+{% load static %}
+<html>
+<head>
+<title>Faculty Management System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript">
+	function validate(formObj)
+	{
+	if(formObj.t1.value.length==0)
+	{
+	alert("Please Enter Paper title");
+	formObj.t1.focus();
+	return false;
+	}
+	if(formObj.t2.value.length==0)
+	{
+	alert("Please Enter List of Authors");
+	formObj.t2.focus();
+	return false;
+	}
+	if(formObj.t3.value.length==0)
+	{
+	alert("Please Enter Journal Date");
+	formObj.t3.focus();
+	return false;
+	}
+	
+	if(formObj.t4.value.length==0)
+	{
+	alert("Please Enter Issue No");
+	formObj.t4.focus();
+	return false;
+	}
+	if(formObj.t5.value.length==0)
+	{
+	alert("Please Enter Total Pages");
+	formObj.t5.focus();
+	return false;
+	}
+	if(formObj.t6.value.length==0)
+	{
+	alert("Please Enter Publisher name");
+	formObj.t6.focus();
+	return false;
+	}
+	if(formObj.t7.value.length==0)
+	{
+	alert("Please enter publication date");
+	formObj.t7.focus();
+	return false;
+	}
+	if(formObj.t9.value.length==0)
+	{
+	alert("Please enter DOI No");
+	formObj.t9.focus();
+	return false;
+	}
+	if(formObj.t10.value.length==0)
+	{
+	alert("Please enter publish URL");
+	formObj.t10.focus();
+	return false;
+	}
+	if(formObj.t11.value.length==0)
+	{
+	alert("Please upload journal paper");
+	formObj.t11.focus();
+	return false;
+	}
+	return true;
+	}
+	</script>
+	<script language="javascript" type="text/javascript" src="{% static 'datetimepicker.js' %}">
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Faculty Management System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+            <ul>      
+     <li><a href="{% url 'SubjectsSchedules' %}"><font size="3" color="black">Manage Teaching Subjects &Schedules</a></li>
+	 <li><a href="{% url 'ManagePublications' %}"><font size="3" color="black">Manage Publications</a></li>
+	 <li><a href="{% url 'UploadMarks' %}"><font size="3" color="black">Add Marksheets</a></li>
+	  <li><a href="{% url 'Engagement' %}"><font size="3" color="black">Engagements</a></li>
+	 <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>            
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="915" height="286" alt="" /></div>
+      				<center>
+<form name="f1" method="post" action={% url 'ManagePublicationsAction' %} enctype="multipart/form-data" onsubmit="return validate(this);">
+{% csrf_token %}<br/>
+   <h2><b>Manage Publications Screen</b></h2>
+   
+	<font size="" color="red"><center>{{ data }}</center></font>
+						
+						<table align="center" width="30%" >
+			 <tr><td><font size='3' color="black"><b>Research&nbsp;Paper&nbsp;Title</b></td>
+			 <td><input type="text" name="t1" style="font-family: Comic Sans MS" size="50"></td></tr>
+
+			         
+		  <tr><td><font size='3' color="black"><b>List&nbsp;Of&nbsp;Authors</b></td><td><input name="t2" type="text" size="35"></td></tr>
+
+			         
+		  <tr><td><font size='3' color="black"><b>Journal&nbsp;Name</b></td><td><input name="t3" type="text" size="35"></td></tr>
+
+			<tr><td><font size='3' color="black"><b>Volume&nbsp;Issue&nbsp;No</b></td>
+			<td><input name="t4" type="Text" size="25"></td></td></tr>
+
+		    
+		   <tr><td><font size='3' color="black"><b>Total&nbsp;Pages</b></td><td><input type="text" name="t5" style="font-family: Comic Sans MS" size="20"/></td></tr>
+
+		   <tr><td><font size='3' color="black"><b>Publisher&nbsp;Name</b></td><td><input type="text" name="t6" style="font-family: Comic Sans MS" size="50"/></td></tr>
+
+			<tr><Td><font size="3" color="black"><b>Publication&nbsp;Date</td><td>
+<input name="t7" type="Text" id="demo1" maxlength="25" size="20" class="c2" ><a href="javascript:NewCal('demo1','ddmmyyyy',false,24)"><img src="{% static 'cal.gif' %}" width="16" height="16" border="0" alt="Pick a date"></a>
+	  		<span class="descriptions"></span>
+</td></tr>	
+
+<tr><td><font size='3' color="black"><b>Indexing</b></td><td><select name="t8">
+		   <option value="Scopus">Scopus</option>
+		   <option value="WOS">WOS</option>
+		   <option value="SCI">SCI</option>
+		   <option value="SCIE">SCIE</option>
+		   <option value="UGC">UGC</option>
+		   </select>
+		   </td></tr>
+
+		   <tr><td><font size='3' color="black"><b>DOI&nbsp;No</b></td><td><input type="text" name="t9" style="font-family: Comic Sans MS" size="20"/></td></tr>
+
+		   <tr><td><font size='3' color="black"><b>Published&nbsp;Article&nbsp;URL</b></td><td><input type="text" name="t10" style="font-family: Comic Sans MS" size="50"/></td></tr>
+
+
+          <tr><td><font size='3' color="black"><b>Upload&nbsp;Paper</b></td><td><input name="t11" type="file" size="20"></td></td></tr>
+			<tr><td></td><td><input type="submit" value="Submit"></td>
+			</table>
+				</div>	
+					
+				</div>
+				
+					
+	</body>
+</html>
